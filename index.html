@@ -5,13 +5,20 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
+    <script src="index.js"></script>
 </head>
 
 <body style="font-family:Verdana;color:#aaaaaa;">
 
     <!-- header -->
     <div class="header">
-        <p style="font-size: small;">My Cart(4)</p>
+        <div class="dropdown">
+            <sapn class="btn-dropdown" onclick="openCart()">My Cart(4)</span>
+                <div class="cart" id="cart">
+                    <p>菜鸟教程</p>
+                    <p>www.runoob.com</p>
+                </div>
+        </div>
     </div>
     <!-- end of header -->
 
@@ -20,23 +27,23 @@
 
         <!-- left: product image -->
         <div class="left">
-            <img src="asset/classic-tee.jpg" alt="product image" style="width:100%;">
+            <img id="pic" alt="product image" style="width:100%;">
         </div>
         <!-- end of product image -->
 
         <!-- right: text and operation -->
         <div class="right">
-            <p class="blacktext" style="font-size: xx-large;">Classic Tee</p>
+            <p class="blacktext" id="title" style="font-size: xx-large;"></p>
 
             <!-- price -->
             <div style="border-bottom: 1px solid #CCCCCC; border-top: 1px solid #CCCCCC;">
-                <p class="price">$75</p>
+                <p class="price" id="price"></p>
             </div>
             <!-- end of price -->
 
             <!-- introduction text -->
             <div style="height: 200px; overflow:auto;">
-                <p class="grey text" style="text-overflow: ellipsis; padding-right:20px;">
+                <p class="grey text" id="description" style="text-overflow: ellipsis; padding-right:20px;">
                     Step into timeless elegance and unparalleled comfort with our Classic White T-Shirt. Crafted with
                     the
                     finest materials
@@ -80,19 +87,14 @@
                     <p class="greytext">SIZE</p>
                     <p style="color: #C90000;">*</p>
                 </div>
-                <div style="display: flex; width: 30%;">
-                    <p class="greytext" id="size-selector">S</p>
-                    <p class="greytext" id="size-selector">M</p>
-                    <p class="greytext" id="size-selector">L</p>
-                </div>
+                <div id="size-options" style="display: flex; width: 30%;"></div>
             </div>
             <!-- end of size -->
 
             <!-- add to cart button-->
-            <button
-                style="border:2px solid #222222; width:150px; height: 50px; font-weight: bolder; color: #222222; background-color: white;">ADD
-                TO
-                CART</button>
+            <button class="button-mouse-away" onclick="handleAddToCart()" onmouseover="addAnimation(this)"
+                onmouseout="removeAnimation(this)">
+                ADD TO CART</button>
             <!-- end of add to cart button-->
 
         </div>
