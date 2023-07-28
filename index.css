@@ -1,0 +1,66 @@
+ /* The design is adapted from: https: //www.w3schools.com/html/html_responsive.asp  */
+
+ * {
+     box-sizing: border-box;
+ }
+
+ .header {
+     background-color: #F6F6F7;
+     text-align: end;
+     padding-right: 13%;
+ }
+
+
+ .left {
+     float: left;
+     width: 40%;
+     padding-left: 10%;
+     padding-top: 40px;
+     margin-top: 7px;
+ }
+
+ .right {
+     float: left;
+     width: 50%;
+     padding: 15px;
+     margin-top: 7px;
+     text-align: left;
+ }
+
+ .greytext {
+     color: #888888;
+ }
+
+ .blacktext {
+     color: #222222;
+ }
+
+ .price {
+     font-weight: bold;
+     font-size: small;
+     color: #222222;
+
+ }
+
+ #size-selector {
+     width: 30px;
+     height: 30px;
+     border: 1px solid #CCCCCC;
+     padding: 5px;
+     margin-right: 10px;
+     text-align: center;
+ }
+
+ @media only screen and (max-width: 620px) {
+
+     /* For mobile phones: */
+     .menu,
+     .left {
+         height: 100%;
+         width: 100%;
+     }
+
+     .right {
+         width: 100%;
+     }
+ }
