@@ -149,7 +149,7 @@
      border-right: 1px solid #CCCCCC;
      max-height: 100vh;
      overflow: auto;
-     scrollbar-width: none
+     scrollbar-width: none;
  }
 
  .cart-item {
@@ -169,7 +169,7 @@
 
  .title-cart {
      grid-area: title-cart;
-     min-width: 100px;
+     min-width: 20vw;
      text-align: left;
  }
 
@@ -218,15 +218,8 @@
      }
 
      .cart {
-         margin-top: 1vh;
+         width: 90vw;
+         margin-left: 10vw;
      }
 
-     .img-cart {
-         grid-area: img-cart;
-         min-height: 490px;
-     }
-
-     .title-cart {
-         grid-area: title-cart;
-     }
  }
