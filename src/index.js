@@ -1,3 +1,8 @@
+// items in cart
+let cartItems = localStorage.getItem("cartItems")
+  ? JSON.parse(localStorage.getItem("cartItems"))
+  : {};
+
 // get product data
 fetch(
   "https://3sb655pz3a.execute-api.ap-southeast-2.amazonaws.com/live/product",
@@ -7,12 +12,15 @@ fetch(
 )
   .then((res) => {
     res.json().then((res) => {
-      console.log(res);
       document.getElementById("title").innerText = res.title;
+      // document.getElementById("title-cart").innerText = res.title;
       document.getElementById("price").innerText =
         "$" + Number(parseFloat(res.price.toFixed(1)));
+      // document.getElementById("price-quant-cart").innerText =
+      //   "$" + Number(parseFloat(res.price.toFixed(1)));
       document.getElementById("description").innerText = res.description;
       document.getElementById("pic").src = res.imageURL;
+      // document.getElementById("img-cart").src = res.imageURL;
       res.sizeOptions.forEach((option, index) => {
         document.getElementById(
           "size-options"
@@ -52,8 +60,17 @@ const handleAddToCart = () => {
   // size is required
   if (selectedSize === null) {
     alert("Please select a size");
+  } else {
+    if (cartItems.hasOwnProperty(selectedSize)) {
+      cartItems[selectedSize] += 1;
+    } else {
+      cartItems[selectedSize] = 1;
+    }
   }
-  console.log(selectedSize);
+  document.getElementById("cart-count").innerText = Object.values(
+    cartItems
+  ).reduce((acc, curr) => acc + curr, 0);
+  localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
 // mouse hovering over
@@ -72,11 +89,43 @@ const removeAnimation = (e) => {
 
 // open cart
 const openCart = () => {
-  cartOpened = !cartOpened;
-  cart = document.getElementsByClassName("cart")[0];
-  if (cartOpened) {
-    cart.style.display = "block";
+  if (Object.keys(cartItems).length !== 0) {
+    document.getElementById("cart").innerHTML = null;
+    cartOpened = !cartOpened;
+    cart = document.getElementById("cart");
+    if (cartOpened) {
+      cart.style.display = "block";
+      document.getElementById("dropdown").style.backgroundColor = "white";
+      document.getElementById("dropdown").style.borderTop = "1px solid #CCCCCC";
+      document.getElementById("dropdown").style.borderLeft =
+        "1px solid #CCCCCC";
+      document.getElementById("dropdown").style.borderRight =
+        "1px solid #CCCCCC";
+      document.getElementById("dropdown").style.color = "#222222";
+    } else {
+      cart.style.display = "none";
+      document.getElementById("dropdown").style.backgroundColor = "transparent";
+      document.getElementById("dropdown").style.border = "none";
+      document.getElementById("dropdown").style.color = "#888888";
+    }
+
+    for (const key in cartItems) {
+      document.getElementById("cart").innerHTML += `
+     <ul class="cart-item">
+                    <img class="img-cart" id="img-cart" src="../asset/classic-tee.jpg"></img>
+                    <p class="title-cart" id="title-cart">${
+                      document.getElementById("title").textContent
+                    }</p>
+                    <p class="price-quant-cart" id="price-quant-cart">${
+                      cartItems[key]
+                    } X <span style="font-weight:bold">${
+        document.getElementById("price").textContent
+      }</span></p>
+                    <p class="size-cart" id="size-cart">Size: ${key}</p>
+                </ul>
+    `;
+    }
   } else {
-    cart.style.display = "none";
+    alert("Your cart is empty");
   }
 };

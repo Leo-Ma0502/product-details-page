@@ -1,10 +1,24 @@
- /* The design is adapted from: https: //www.w3schools.com/html/html_responsive.asp  */
+ /* The responsive design is adapted from: https: //www.w3schools.com/html/html_responsive.asp  */
 
  * {
      box-sizing: border-box;
  }
 
+ /* grid layout for the whole page */
+ .container {
+     display: grid;
+     grid-template-areas:
+         'header header header header header header'
+         'header header header header header header'
+         'left left left title title title'
+         'left left left price price price'
+         'left left left discription discription discription'
+         'left left left size size size'
+         'left left left add-to-cart add-to-cart add-to-cart';
+ }
+
  .header {
+     grid-area: header;
      background-color: #F6F6F7;
      text-align: end;
      padding-right: 13%;
@@ -12,37 +26,51 @@
 
 
  .left {
+     grid-area: left;
      float: left;
      width: 40%;
      padding-left: 10%;
-     padding-top: 40px;
-     margin-top: 7px;
+     padding-top: 40px
  }
 
  .right {
      float: left;
-     width: 50%;
-     padding: 15px;
-     margin-top: 7px;
+     width: 40%;
      text-align: left;
  }
 
- .greytext {
-     color: #888888;
- }
-
- .blacktext {
+ #title {
+     grid-area: title;
      color: #222222;
  }
 
- .price {
+ #price {
+     grid-area: price;
      font-weight: bold;
      font-size: small;
      color: #222222;
+     border-bottom: 1px solid #CCCCCC;
+     border-top: 1px solid #CCCCCC
+ }
 
+ #description {
+     grid-area: instruction;
+     overflow: auto;
+     padding-right: 20px;
+     color: #888888
+ }
+
+ #size {
+     grid-area: size;
+     padding-top: 25px;
+ }
+
+ #add-to-cart {
+     grid-area: add-to-cart;
  }
 
  #size-selector-unselected {
+     color: #888888;
      width: 30px;
      height: 30px;
      border: 1px solid #CCCCCC;
@@ -64,7 +92,9 @@
      cursor: pointer;
  }
 
+ /* mouse hovering over add to cart button */
  .button-mouse-away {
+     grid-area: add-to-cart;
      border: 2px solid #222222;
      width: 150px;
      height: 50px;
@@ -76,6 +106,7 @@
  }
 
  .button-mouse-on {
+     grid-area: add-to-cart;
      border: 2px solid #222222;
      width: 150px;
      height: 50px;
@@ -86,32 +117,116 @@
 
  }
 
+ /* drop down to see cart */
  .dropdown {
      position: relative;
      display: inline-block;
+     color: #888888
  }
 
  .btn-dropdown {
      cursor: pointer;
      font-size: small;
+     height: 100%;
  }
 
+ .btn-dropdown-mobile {
+     display: none;
+     cursor: pointer;
+     font-size: small;
+     height: 100%;
+ }
+
+ /* layout of cart */
  .cart {
      display: none;
      position: absolute;
+     right: 0;
+     font-size: small;
+     background-color: white;
+     border-bottom: 1px solid #CCCCCC;
+     border-left: 1px solid #CCCCCC;
+     border-right: 1px solid #CCCCCC;
+     max-height: 100vh;
+     overflow: auto;
+     scrollbar-width: none
+ }
+
+ .cart-item {
+     display: grid;
+     grid-template-areas:
+         'img-cart title-cart'
+         'img-cart price-cart'
+         'img-cart size-cart';
+ }
+
+ .img-cart {
+     grid-area: img-cart;
+     float: left;
+     max-height: 150px;
+
+ }
+
+ .title-cart {
+     grid-area: title-cart;
+     min-width: 100px;
+     text-align: left;
+ }
+
+ .price-quant-cart {
+     grid-area: price-cart;
+     text-align: left;
+ }
+
+ .size-cart {
+     grid-area: size-cart;
+     text-align: left;
  }
 
  @media only screen and (max-width: 620px) {
 
+
      /* For mobile phones: */
-     .menu,
-     .header,
-     .left {
-         height: 100%;
+     .header {
          width: 100%;
+         height: 5vh;
+     }
+
+     .left {
+         width: 100%;
+         margin-top: 1%;
+         padding-left: 5%;
+         padding-right: 5%
      }
 
      .right {
-         width: 100%;
+         width: 95%;
+         padding-left: 5%;
+         padding-right: 5%
+     }
+
+     .dropdown {
+         height: 5vh;
+     }
+
+     .btn-dropdown {
+         display: none;
+     }
+
+     .btn-dropdown-mobile {
+         display: inline;
+     }
+
+     .cart {
+         margin-top: 1vh;
+     }
+
+     .img-cart {
+         grid-area: img-cart;
+         min-height: 490px;
+     }
+
+     .title-cart {
+         grid-area: title-cart;
      }
  }

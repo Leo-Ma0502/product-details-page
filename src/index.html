@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- The design is adapted from: https: //www.w3schools.com/html/html_responsive.asp -->
+<!-- The responsive design is adapted from: https: //www.w3schools.com/html/html_responsive.asp -->
 <html>
 
 <head>
@@ -8,83 +8,49 @@
     <script src="index.js"></script>
 </head>
 
-<body style="font-family:Verdana;color:#aaaaaa;">
+<body class="container">
 
     <!-- header -->
     <div class="header">
-        <div class="dropdown">
-            <sapn class="btn-dropdown" onclick="openCart()">My Cart(4)</span>
-                <div class="cart" id="cart">
-                    <p>菜鸟教程</p>
-                    <p>www.runoob.com</p>
-                </div>
+        <div class="dropdown" id="dropdown">
+            <div class="btn-dropdown" id="btn-dropdown" onclick="openCart()">
+                <p class="original">My Cart(<span class="cart-count">0</span>)</p>
+            </div>
+            <div class="btn-dropdown-mobile" id="btn-dropdown" onclick="openCart()">
+                <!-- image source: https://icons.getbootstrap.com/icons/cart3/ -->
+                <img src="../asset/cart3.svg" style="padding-top: 30%;">(<span class="cart-count">0</span>)</img>
+            </div>
+            <div class="cart" id="cart"></div>
         </div>
     </div>
     <!-- end of header -->
 
     <!-- content -->
     <div>
-
         <!-- left: product image -->
         <div class="left">
-            <img id="pic" alt="product image" style="width:100%;">
+            <img id="pic" alt="product image" style="width:100%;min-height: 400px;">
         </div>
         <!-- end of product image -->
 
         <!-- right: text and operation -->
         <div class="right">
-            <p class="blacktext" id="title" style="font-size: xx-large;"></p>
+            <!-- title -->
+            <p id="title" style="font-size: xx-large;"></p>
+            <!-- end of title -->
 
             <!-- price -->
-            <div style="border-bottom: 1px solid #CCCCCC; border-top: 1px solid #CCCCCC;">
-                <p class="price" id="price"></p>
-            </div>
+            <p id="price"></p>
             <!-- end of price -->
 
             <!-- introduction text -->
-            <div style="height: 200px; overflow:auto;">
-                <p class="grey text" id="description" style="text-overflow: ellipsis; padding-right:20px;">
-                    Step into timeless elegance and unparalleled comfort with our Classic White T-Shirt. Crafted with
-                    the
-                    finest materials
-                    and designed to be your go-to wardrobe staple, this t-shirt effortlessly combines versatility,
-                    style,
-                    and quality.
-
-                    Immerse yourself in the softness of premium cotton, delicately woven to caress your skin with every
-                    wear. The
-                    lightweight and breathable fabric ensure a pleasant sensation, making it ideal for any season.
-                    Whether
-                    you're lounging
-                    at home, running errands, or heading to a casual gathering, our Classic White T-Shirt is the perfect
-                    companion for all
-                    occasions.
-
-                    The magic of this t-shirt lies in its minimalist charm. The pristine white hue pairs beautifully
-                    with
-                    any outfit,
-                    offering endless possibilities for effortless style. Dress it up with a blazer and jeans for a chic
-                    urban look or dress
-                    it down with shorts for a relaxed weekend vibe. The simplistic design adapts effortlessly to your
-                    unique
-                    fashion sense,
-                    making it an essential piece in your wardrobe collection.
-
-                    Beyond its unmatched aesthetics, the Classic White T-Shirt boasts exceptional durability. Carefully
-                    stitched with
-                    precision and reinforced seams, this t-shirt is built to withstand the test of time, ensuring it
-                    remains
-                    a faithful
-                    companion for years to come.
-                    -- Chat GPT
-                </p>
-            </div>
+            <p id="description"></p>
             <!-- end of introduction text -->
 
             <!-- size -->
-            <div style="padding-top: 25px;">
+            <div id="size">
                 <div style="display: flex; font-size: small;">
-                    <p class="greytext">SIZE</p>
+                    <p style="color: #888888;">SIZE</p>
                     <p style="color: #C90000;">*</p>
                 </div>
                 <div id="size-options" style="display: flex; width: 30%;"></div>
@@ -92,8 +58,8 @@
             <!-- end of size -->
 
             <!-- add to cart button-->
-            <button class="button-mouse-away" onclick="handleAddToCart()" onmouseover="addAnimation(this)"
-                onmouseout="removeAnimation(this)">
+            <button id="add-to-cart" class="button-mouse-away" onclick="handleAddToCart()"
+                onmouseover="addAnimation(this)" onmouseout="removeAnimation(this)">
                 ADD TO CART</button>
             <!-- end of add to cart button-->
 
@@ -104,5 +70,14 @@
     <!-- end of content -->
 
 </body>
+
+<script>
+    Array.from(document.getElementsByClassName("cart-count")).map((element) => {
+        element.innerText =
+            Object.keys(cartItems).length === 0
+                ? 0
+                : Object.values(cartItems).reduce((acc, curr) => acc + curr, 0);
+    })
+</script>
 
 </html>
