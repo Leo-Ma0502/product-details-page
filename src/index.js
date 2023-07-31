@@ -13,14 +13,10 @@ fetch(
   .then((res) => {
     res.json().then((res) => {
       document.getElementById("title").innerText = res.title;
-      // document.getElementById("title-cart").innerText = res.title;
       document.getElementById("price").innerText =
         "$" + Number(parseFloat(res.price.toFixed(1)));
-      // document.getElementById("price-quant-cart").innerText =
-      //   "$" + Number(parseFloat(res.price.toFixed(1)));
       document.getElementById("description").innerText = res.description;
       document.getElementById("pic").src = res.imageURL;
-      // document.getElementById("img-cart").src = res.imageURL;
       res.sizeOptions.forEach((option, index) => {
         document.getElementById(
           "size-options"
@@ -67,9 +63,12 @@ const handleAddToCart = () => {
       cartItems[selectedSize] = 1;
     }
   }
-  document.getElementById("cart-count").innerText = Object.values(
-    cartItems
-  ).reduce((acc, curr) => acc + curr, 0);
+  Array.from(document.getElementsByClassName("cart-count")).map((element) => {
+    element.innerText = Object.values(cartItems).reduce(
+      (acc, curr) => acc + curr,
+      0
+    );
+  });
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
 };
 
@@ -112,7 +111,7 @@ const openCart = () => {
     for (const key in cartItems) {
       document.getElementById("cart").innerHTML += `
      <ul class="cart-item">
-                    <img class="img-cart" id="img-cart" src="../asset/classic-tee.jpg"></img>
+                    <img class="img-cart" id="img-cart" src="./asset/classic-tee.jpg"></img>
                     <p class="title-cart" id="title-cart">${
                       document.getElementById("title").textContent
                     }</p>
