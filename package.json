@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "http-server ./src",
+    "start": "npx http-server ./src",
     "test": "jest"
   },
   "repository": {
@@ -17,5 +17,7 @@
     "url": "https://github.com/Leo-Ma0502/product-details-page/issues"
   },
   "homepage": "https://github.com/Leo-Ma0502/product-details-page#readme",
-  "dependencies": {}
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
 }
