@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npx http-server ./src"
+    "start": "npx http-server"
   },
   "repository": {
     "type": "git",
