@@ -4,7 +4,7 @@
 
 https://leo-ma0502.github.io/product-details-page/
 
-![Web page](src/asset/Screenshot.png)
+![Web page](About/Screenshot.png)
 
 ### Acknowledgement: prototype designed by Moustache Republic (https://www.moustacherepublic.com)
 
@@ -17,8 +17,6 @@ npm i
 
 npm start
 ```
-
-or run the docker container with Dockerfile if you wish.
 
 ## Funtions:
 
